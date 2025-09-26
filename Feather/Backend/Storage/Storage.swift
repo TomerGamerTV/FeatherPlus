@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import Foundation // Add this for FileManager and URL
 
 // MARK: - Class
 final class Storage: ObservableObject {
@@ -17,8 +18,46 @@ final class Storage: ObservableObject {
 	init(inMemory: Bool = false) {
 		container = NSPersistentContainer(name: _name)
 		
+		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+		let docsStoreURL = documentsDirectory.appendingPathComponent("Feather.sqlite")
+		
+		let libraryDirectory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0].appendingPathComponent("Application Support")
+		let libraryStoreURL = libraryDirectory.appendingPathComponent("Feather.sqlite")
+		
 		if inMemory {
 			container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+		} else {
+			var storeURL = docsStoreURL
+			if !FileManager.default.fileExists(atPath: docsStoreURL.path) && FileManager.default.fileExists(atPath: libraryStoreURL.path) {
+				do {
+					try FileManager.default.copyItem(at: libraryStoreURL, to: docsStoreURL)
+					
+					let walURL = libraryStoreURL.appendingPathExtension("sqlite-wal")
+					let docsWalURL = docsStoreURL.appendingPathExtension("sqlite-wal")
+					if FileManager.default.fileExists(atPath: walURL.path) {
+						try FileManager.default.copyItem(at: walURL, to: docsWalURL)
+					}
+					
+					let shmURL = libraryStoreURL.appendingPathExtension("sqlite-shm")
+					let docsShmURL = docsStoreURL.appendingPathExtension("sqlite-shm")
+					if FileManager.default.fileExists(atPath: shmURL.path) {
+						try FileManager.default.copyItem(at: shmURL, to: docsShmURL)
+					}
+					
+					// Clean up old files
+					try FileManager.default.removeItem(at: libraryStoreURL)
+					if FileManager.default.fileExists(atPath: walURL.path) {
+						try FileManager.default.removeItem(at: walURL)
+					}
+					if FileManager.default.fileExists(atPath: shmURL.path) {
+						try FileManager.default.removeItem(at: shmURL)
+					}
+				} catch {
+					print("Failed to migrate database: \(error)")
+					storeURL = libraryStoreURL
+				}
+			}
+			container.persistentStoreDescriptions.first!.url = storeURL
 		}
 		
 		container.loadPersistentStores(completionHandler: { (storeDescription, error) in
