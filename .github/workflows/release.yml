@@ -9,14 +9,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        env:
+          GIT_LFS_SKIP_SMUDGE: 1
         with:
           submodules: 'true'
-          lfs: true
+          lfs: false
 
       - name: Fetch LFS Objects
         run: |
+          git lfs install --local
           git lfs pull
-          git submodule foreach --recursive git lfs pull
+          git submodule foreach --recursive "git lfs install --local && git lfs pull"
       
       - name: Use Xcode 26.2
         run: |
