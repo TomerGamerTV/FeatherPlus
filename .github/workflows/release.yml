@@ -8,9 +8,15 @@ jobs:
     runs-on: macos-26
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: 'true'
+          lfs: true
+
+      - name: Fetch LFS Objects
+        run: |
+          git lfs pull
+          git submodule foreach --recursive git lfs pull
       
       - name: Use Xcode 26.2
         run: |

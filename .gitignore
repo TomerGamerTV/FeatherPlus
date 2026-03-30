@@ -1,6 +1,7 @@
 .DS_Store
 packages
 Payload
+logs/
 *UserInterfaceState.xcuserstate
 xcuserdata/
 deps
