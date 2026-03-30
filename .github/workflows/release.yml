@@ -1,6 +1,7 @@
 name: Create New Release
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -14,12 +15,17 @@ jobs:
         with:
           submodules: 'true'
           lfs: false
+          persist-credentials: false
 
       - name: Fetch LFS Objects
         run: |
           git lfs install --local
           git lfs pull
-          git submodule foreach --recursive "git lfs install --local && git lfs pull"
+          git submodule foreach --recursive '
+            git config --local --unset-all http.https://github.com/.extraheader || true
+            git lfs install --local
+            git lfs pull
+          '
       
       - name: Use Xcode 26.2
         run: |
@@ -39,6 +45,7 @@ jobs:
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
       - name: Create Release
+        if: github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
         with:
           name: Feather v${{ env.VERSION }}
@@ -49,4 +56,4 @@ jobs:
           fail_on_unmatched_files: true
           draft: true
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
