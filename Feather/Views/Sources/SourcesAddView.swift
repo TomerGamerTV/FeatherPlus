@@ -38,7 +38,7 @@ struct SourcesAddView: View {
 	let recommendedSources: [URL] = [
 		"https://raw.githubusercontent.com/khcrysalis/Feather/refs/heads/main/app-repo.json",
 		"https://raw.githubusercontent.com/Aidoku/Aidoku/altstore/apps.json",
-		"https://flyinghead.github.io/flycast-builds/altstore.json",
+		"https://github.com/chachillie/Flycast-iOS/raw/main/flycast-ios.json",
 		"https://xitrix.github.io/iTorrent/AltStore.json",
 		"https://altstore.oatmealdome.me/",
 		"https://raw.githubusercontent.com/LiveContainer/LiveContainer/refs/heads/main/apps.json",
@@ -46,7 +46,11 @@ struct SourcesAddView: View {
 		"https://pokemmo.com/altstore/",
 		"https://provenance-emu.com/apps.json",
 		"https://community-apps.sidestore.io/sidecommunity.json",
-		"https://alt.getutm.app"
+		"https://alt.getutm.app",
+		"https://raw.githubusercontent.com/paigely/Navic/refs/heads/master/app-repo.json",
+		"https://stikdebug.xyz/index.json",
+		"https://apps.manicemu.site/altstore",
+		"https://alt.crystall1ne.dev"
 	].map { URL(string: $0)! }
 	
 	@State private var _isImporting = false
@@ -74,11 +78,23 @@ struct SourcesAddView: View {
 					}
 					
 					Button(.localized("Export"), systemImage: "doc.on.doc") {
-						UIPasteboard.general.string = Storage.shared.getSources().map {
+						let sources = Storage.shared.getSources()
+						guard !sources.isEmpty else {
+							UIAlertController.showAlertWithOk(
+								title: .localized("Error"),
+								message: .localized("No sources to export")
+							)
+							return
+						}
+						UIPasteboard.general.string = sources.map {
 							$0.sourceURL!.absoluteString
 						}.joined(separator: "\n")
-						UINotificationFeedbackGenerator().notificationOccurred(.success)
-						dismiss()
+						UIAlertController.showAlertWithOk(
+							title: .localized("Success"),
+							message: .localized("Sources copied to clipboard")
+						) {
+							dismiss()
+						}
 					}
 				} footer: {
 					Text(.localized("Supports importing from KravaSign/MapleSign and ESign."))

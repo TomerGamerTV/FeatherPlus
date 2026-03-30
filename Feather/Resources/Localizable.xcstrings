@@ -225,7 +225,7 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
+                  "state" : "translated",
                   "value" : "%lld Days"
                 }
               }
@@ -516,7 +516,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "💜 Dies wäre alles nicht möglich ohne meine Sponsoren!"
+            "value" : "💜 Ohne meine Sponsoren wäre das alles nicht möglich!"
           }
         },
         "en" : {
@@ -741,6 +741,29 @@
         }
       }
     },
+    "Add and manage certificates used for signing applications." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add and manage certificates used for signing applications."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj i zarządzaj certyfikatami używanymi do podpisywania aplikacji."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thêm và quản lý chứng chỉ được sử dụng để ký ứng dụng."
+          }
+        }
+      }
+    },
     "Add Source" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -918,6 +941,29 @@
         }
       }
     },
+    "Advanced Installation Method" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced Installation Method"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaawansowana metoda instalacji"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phương pháp cài đặt nâng cao"
+          }
+        }
+      }
+    },
     "All" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -989,7 +1035,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Dateien der Apps sind enthalten in den Dokumenten-Ordner, hier sind ein paar Abkürzungen zu diesen."
+            "value" : "Alle App-Dateien liegen im Dokumente-Verzeichnis. Hier sind einige Schnellzugriffe."
           }
         },
         "en" : {
@@ -1398,7 +1444,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "App-ID Name"
+            "value" : "AppID Name"
           }
         },
         "en" : {
@@ -1812,7 +1858,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Standardmäßig, werden lokalisierte Titel für diese App nicht geändert, jedoch kann diese Option dies überschreiben."
+            "value" : "Standardmäßig werden lokalisierte Titel der App nicht geändert, diese Option überschreibt dies jedoch."
           }
         },
         "en" : {
@@ -2102,6 +2148,29 @@
         }
       }
     },
+    "Certificates updated successfully." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certificates updated successfully."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certyfikaty zaktualizowano pomyślnie."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chứng chỉ được cập nhật thành công."
+          }
+        }
+      }
+    },
     "Change" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2221,7 +2290,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wähle aus Dateien"
+            "value" : "Aus Dateien auswählen"
           }
         },
         "en" : {
@@ -2281,7 +2350,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wähle aus Fotos"
+            "value" : "Aus Fotos auswählen"
           }
         },
         "en" : {
@@ -2677,7 +2746,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Credits"
+            "value" : "Mitwirkende"
           }
         },
         "en" : {
@@ -2738,6 +2807,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "致谢"
+          }
+        }
+      }
+    },
+    "Custom Theme Color" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom Theme Color"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niestandardowy Kolor Motywu"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Màu chủ đề tùy chỉnh"
           }
         }
       }
@@ -2804,6 +2896,12 @@
     "Dark" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3173,7 +3271,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Löschen nach Signierung"
+            "value" : "Nach dem Signieren löschen"
           }
         },
         "en" : {
@@ -3283,36 +3381,6 @@
           }
         }
       }
-    },
-    "Discord" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Discord"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Discord"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Discord"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Discord"
-          }
-        }
-      },
-      "shouldTranslate" : false
     },
     "Dismiss" : {
       "extractionState" : "manual",
@@ -3659,7 +3727,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Download StosVPN"
+            "value" : "StosVPN downloaden"
           }
         },
         "en" : {
@@ -3763,8 +3831,30 @@
             "value" : "Dylibs"
           }
         }
-      },
-      "shouldTranslate" : false
+      }
+    },
+    "Dynamic Icons" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dynamic Icons"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dynamiczne Ikony"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biểu tượng thích ứng"
+          }
+        }
+      }
     },
     "Enable Liquid Glass" : {
       "extractionState" : "manual",
@@ -3825,7 +3915,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der dynamische Schutz wendet den PPQ-Schutz nur an, wenn die Bundle-ID im App Store vorhanden ist. Dies erfordert eine Internetverbindung während der Signierung."
+            "value" : "Wenn eine Schutzfunktion aktiviert wird, wird eine zufällige Zeichenkette an die Bundle ID der von dir signierten Apps angehängt. Dies dient dazu, sicherzustellen, dass deine Apple ID von Apple nicht gesperrt wird. Bei der Nutzung eines Signierungsdienstes kannst du dies jedoch ignorieren."
           }
         },
         "en" : {
@@ -3932,7 +4022,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gebe ein URL zur Validierung an."
+            "value" : "Gib eine URL ein, um die Validierung zu starten."
           }
         },
         "en" : {
@@ -4115,7 +4205,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gib das Passwort ein, das mit dem privaten Schlüssel verknüpft ist. Lasse es leer, wenn kein Passwort erforderlich ist."
+            "value" : "Gib das mit dem privaten Schlüssel verknüpfte Passwort ein. Lass das Feld leer, wenn kein Passwort erforderlich ist."
           }
         },
         "en" : {
@@ -4694,7 +4784,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fehlgeschlagen beim Download, überprüfe deine Internetverbindung und versuche es erneut."
+            "value" : "Herunterladen fehlgeschlagen. Überprüfe deine Internetverbindung und versuche es erneut."
           }
         },
         "en" : {
@@ -4860,7 +4950,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datei Sharing"
+            "value" : "Dateifreigabe"
           }
         },
         "en" : {
@@ -5043,7 +5133,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erzwinge Versuch Zu Lokalisieren"
+            "value" : "Lokalisierung erzwingen"
           }
         },
         "en" : {
@@ -5161,7 +5251,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Frameworks & Plug-Ins"
+            "value" : "Frameworks & Plug-ins"
           }
         },
         "en" : {
@@ -5220,7 +5310,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Völlig Lokal"
+            "value" : "Komplett lokal"
           }
         },
         "en" : {
@@ -5388,6 +5478,12 @@
     "Get" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5426,7 +5522,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kriege Zugang zu unserem geheimen Discord durch einer Spende, wo wir über zukünftige Updates, Betas und mögliche Wege um deine Erfahrung besser zu machen sprechen."
+            "value" : "Erhalte durch eine Spende Zugang zu unserem geheimen Discord, in dem wir über zukünftige Updates, Betas und mögliche Verbesserungen deines Nutzererlebnisses sprechen."
           }
         },
         "en" : {
@@ -5486,7 +5582,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Info kriegen"
+            "value" : "Infos abrufen"
           }
         },
         "en" : {
@@ -5539,7 +5635,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beginne mit deiner ersten Repository."
+            "value" : "Starte, indem du dein erstes Repository hinzufügst."
           }
         },
         "en" : {
@@ -5586,7 +5682,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beginne mit dem Hinzufügen deiner ersten IPA."
+            "value" : "Starte, indem du deine erste IPA-Datei importierst."
           }
         },
         "en" : {
@@ -5633,7 +5729,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beginne mit der Signierung durch Hinzufügen deines ersten Zertifikats."
+            "value" : "Starte mit dem Signieren, indem du dein erstes Zertifikat importierst."
           }
         },
         "en" : {
@@ -5686,7 +5782,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GitHub-Repository"
+            "value" : "GitHub Repository"
           }
         },
         "en" : {
@@ -5757,7 +5853,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gehe auf unserem GitHub und gib uns einen Stern!"
+            "value" : "Besuche unser GitHub und gib uns einen Stern!"
           }
         },
         "en" : {
@@ -5975,65 +6071,6 @@
         }
       }
     },
-    "Identifers" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Identifikátory"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kennungen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Identifers"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pengidentifikasi"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Identificativi"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Identyfikatory"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tanıtıcılar"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Định danh"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "标识符"
-          }
-        }
-      }
-    },
     "Identifier" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6170,6 +6207,65 @@
         }
       }
     },
+    "Identifiers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identifikátory"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kennungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identifiers"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengidentifikasi"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identificativi"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identyfikatory"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanıtıcılar"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Định danh"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标识符"
+          }
+        }
+      }
+    },
     "idevice" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6197,8 +6293,30 @@
             "value" : "idevice"
           }
         }
-      },
-      "shouldTranslate" : false
+      }
+    },
+    "idevice warning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This installation method is intended for advanced users only!\n\nIt requires a VPN and a pairing file from a PC.\n\nIts recommended you go back to the server installation method."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta metoda instalacji jest przeznaczona tylko dla zaawansowanych użytkowników!\n\nWymaga ona VPN i pliku parowania z komputera.\n\nZaleca się powrót do metody instalacji przez serwer."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phương pháp cài đặt này chỉ dành cho người dùng nâng cao!\n\nNó yêu cầu VPN và tệp ghép nối từ máy tính.\n\nChúng tôi khuyên bạn nên quay lại phương pháp cài đặt trên máy chủ."
+          }
+        }
+      }
     },
     "If any issues occur within the app please report it via the GitHub repository. When submitting an issue, make sure to submit detailed information." : {
       "extractionState" : "manual",
@@ -6206,7 +6324,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falls ein Fehler auftritt mit der App, melde dies bitte über das GitHub-Repositorium. Beim einreichen von einem Fehler, stelle sicher detaillierte Informationen anzugeben."
+            "value" : "Wenn innerhalb der App Probleme auftreten, melde diese bitte über das GitHub Repository. Achte beim Erstellen eines Beitrags darauf, möglichst detaillierte Informationen anzugeben."
           }
         },
         "en" : {
@@ -6743,6 +6861,12 @@
     "Information" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6765,6 +6889,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "内容"
+          }
+        }
+      }
+    },
+    "Inject into Extensions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inject into Extensions"
           }
         }
       }
@@ -6955,6 +7090,24 @@
     "Install After Signing" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach dem Signieren installieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install After Signing"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zainstaluj po podpisaniu"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6965,17 +7118,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "签名后安装"
-          }
-        }
-      }
-    },
-    "Install After Signing" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cài đặt sau khi ký"
           }
         }
       }
@@ -7016,7 +7158,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cài đặt"
+            "value" : "Trình cài đặt"
           }
         },
         "zh-Hans" : {
@@ -7039,7 +7181,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Installation-Typ"
+            "value" : "Installationstyp"
           }
         },
         "en" : {
@@ -7205,7 +7347,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iTunes Sharing"
+            "value" : "iTunes Dateifreigabe"
           }
         },
         "en" : {
@@ -7258,13 +7400,42 @@
         }
       }
     },
+    "Join Us on Discord" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trete unserem Discord bei"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join Us on Discord"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dołącz do nas na Discordzie"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hãy tham gia cùng chúng tôi trên Discord!"
+          }
+        }
+      }
+    },
     "Learn more about how to setup a repository…" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lerne mehr darüber wie man ein Repositorium einrichtet…"
+            "value" : "Erfahre mehr darüber, wie du ein Repository einrichten kannst…"
           }
         },
         "en" : {
@@ -7305,41 +7476,6 @@
         }
       }
     },
-    "Less" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Less"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mniej"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daha Az"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ẩn"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "更少"
-          }
-        }
-      }
-    },
     "Library" : {
       "comment" : "Library tab",
       "extractionState" : "manual",
@@ -7353,7 +7489,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mediathek"
+            "value" : "Bibliothek"
           }
         },
         "en" : {
@@ -7424,7 +7560,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bibliothek Zell-Darstellung"
+            "value" : "Bibliothek Zelldarstellung"
           }
         },
         "en" : {
@@ -7474,6 +7610,12 @@
     "Light" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7519,7 +7661,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mindest-App-Version"
+            "value" : "Mindestanforderung"
           }
         },
         "en" : {
@@ -7861,7 +8003,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zertifikate hinzufügen"
+            "value" : "Neues Zertifikat"
           }
         },
         "en" : {
@@ -8233,7 +8375,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Frameworks oder Plug-Ins gefunden."
+            "value" : "Keine Frameworks oder Plug-ins gefunden."
           }
         },
         "en" : {
@@ -8333,7 +8475,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Pairing-Datei gefunden, bitte importiere sie."
+            "value" : "Pairing-Datei fehlt, Datei-Import erforderlich."
           }
         },
         "en" : {
@@ -8383,6 +8525,12 @@
     "No Privacy Permissions listed." : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Privacy Permissions listed."
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8456,13 +8604,36 @@
         }
       }
     },
+    "No sources to copy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No sources to copy"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak źródeł do skopiowania"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có nguồn để sao chép"
+          }
+        }
+      }
+    },
     "None" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nichts"
+            "value" : "Keine"
           }
         },
         "en" : {
@@ -8515,7 +8686,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Okay"
+            "value" : "OK"
           }
         },
         "en" : {
@@ -8592,7 +8763,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nutze nur localhost Adresse"
+            "value" : "Nur die Localhost-Adresse verwenden"
           }
         },
         "en" : {
@@ -8704,7 +8875,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne ein [Issue](https://github.com/khcrysalis/Feather/issues) auf GitHub wenn du deine Quelle aufgelistet haben möchtest."
+            "value" : "Erstelle ein [Issue](https://github.com/khcrysalis/Feather/issues) auf GitHub wenn du deine Quelle aufgelistet haben möchtest."
           }
         },
         "en" : {
@@ -8757,7 +8928,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Archive"
+            "value" : "Archive öffnen"
           }
         },
         "en" : {
@@ -8816,7 +8987,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Zertifikate"
+            "value" : "Zertifikate öffnen"
           }
         },
         "en" : {
@@ -8875,7 +9046,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Dokumente"
+            "value" : "Dokumente öffnen"
           }
         },
         "en" : {
@@ -9046,7 +9217,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verpacken"
+            "value" : "Paketierung"
           }
         },
         "en" : {
@@ -9407,7 +9578,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bitte gehe in den Einstellungen und importiere ein gültiges Zertifikat"
+            "value" : "Bitte navigiere zu den Einstellungen und importiere ein gültiges Zertifikat"
           }
         },
         "en" : {
@@ -9688,8 +9859,7 @@
             "value" : "Pro Motion"
           }
         }
-      },
-      "shouldTranslate" : false
+      }
     },
     "Proceed" : {
       "extractionState" : "manual",
@@ -9875,7 +10045,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Geräte bereitstellen"
+            "value" : "Alle Geräte provisionieren"
           }
         },
         "en" : {
@@ -10158,7 +10328,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entferne nervige Meldungen wie diese nach deinem Beta-Zugang!"
+            "value" : "Entferne nervige Meldungen wie diese, nachdem du Beta-Zugang erhalten hast!"
           }
         },
         "en" : {
@@ -10217,7 +10387,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entferne Provisioning Datei"
+            "value" : "Provisioning entfernen"
           }
         },
         "en" : {
@@ -10341,7 +10511,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entferne URLScheme"
+            "value" : "URL-Schema entfernen"
           }
         },
         "en" : {
@@ -10406,7 +10576,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entferne Platzhalter Watch App"
+            "value" : "Watch-Platzhalter entfernen"
           }
         },
         "en" : {
@@ -10500,7 +10670,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ersetze Substrate mit ElleKit"
+            "value" : "Ersetze Substrate durch ElleKit"
           }
         },
         "en" : {
@@ -10553,7 +10723,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ersatz"
+            "value" : "Ersetzung"
           }
         },
         "en" : {
@@ -10618,7 +10788,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quellen"
+            "value" : "Repositories"
           }
         },
         "en" : {
@@ -10671,7 +10841,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Repositorium bereits hinzugefügt."
+            "value" : "Repository wurde bereits hinzugefügt."
           }
         },
         "en" : {
@@ -11484,7 +11654,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sehe alle Apps aus deinen Quellen"
+            "value" : "Alle Apps aus deinen Quellen anzeigen"
           }
         },
         "en" : {
@@ -11543,7 +11713,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Es sieht so aus als hättest du eine Pairing-Datei in die Hände bekommen!"
+            "value" : "Prima, du hast eine gültige Pairing-Datei!"
           }
         },
         "en" : {
@@ -11603,7 +11773,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wähle alternatives Icon"
+            "value" : "Alternatives Icon auswählen"
           }
         },
         "en" : {
@@ -11663,7 +11833,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wähle Entitlements-Datei"
+            "value" : "Entitlements-Datei auswählen"
           }
         },
         "en" : {
@@ -11722,7 +11892,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Semi Lokal"
+            "value" : "Semi-Lokal"
           }
         },
         "en" : {
@@ -11775,7 +11945,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sende Manifest"
+            "value" : "Manifest wird gesendet"
           }
         },
         "en" : {
@@ -11822,7 +11992,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sende Payload"
+            "value" : "Payload wird gesendet"
           }
         },
         "en" : {
@@ -11916,7 +12086,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Server (Empfohlen):\nBenutzt einen lokalen laufenden Server und itms-services:// um Apps zu installieren.\n\nIDevice (Erweitert):\nBenutzt eine VPN und eine Pairing-Datei. Schreibt zu AFC und ruft manuell installd auf, während der Installations-Fortschritt überwacht in dem ein Callback benutzt wird\nVorteil: Es ist sehr zuverlässig, braucht keine SSL-Zertifikate oder einen externen laufenden Server. Vielmehr funktioniert es wie ein Computer."
+            "value" : "Server (Empfohlen):\nVerwendet einen lokal gehosteten Server und itms-services://, um Apps zu installieren.\n\nIDevice (fortgeschritten):\nVerwendet ein VPN und eine Pairing-Datei. Verwendet AFC und ruft installd manuell auf, während der Installationsfortschritt über einen Callback überwacht wird.\nVorteil: Es ist sehr zuverlässig, benötigt keine SSL-Zertifikate oder extern gehostete Server."
           }
         },
         "en" : {
@@ -12022,7 +12192,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Server-Typ"
+            "value" : "Servertyp"
           }
         },
         "en" : {
@@ -12148,7 +12318,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeige Sheet beim Exportieren"
+            "value" : "Teilen-Dialog beim Export anzeigen"
           }
         },
         "en" : {
@@ -12266,7 +12436,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeige deine Unterstützung durch einer Spende! Falls du nicht in der Lage bist zu spenden, funktioniert das verbreiten der Nachricht auch!"
+            "value" : "Zeige deine Unterstützung durch eine Spende! Wenn du nicht spenden kannst, hilft es auch, dieses Projekt zu teilen!"
           }
         },
         "en" : {
@@ -12809,6 +12979,29 @@
         }
       }
     },
+    "Sources copied to clipboard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sources copied to clipboard"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Źródła skopiowane do schowka"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nguồn đã được sao chép vào bộ nhớ tạm"
+          }
+        }
+      }
+    },
     "Speed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12868,7 +13061,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sponsors"
+            "value" : "Sponsoren"
           }
         },
         "en" : {
@@ -13128,7 +13321,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zell-Darstellung speichern"
+            "value" : "Zelldarstellung speichern"
           }
         },
         "en" : {
@@ -13323,7 +13516,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unterstützt das importieren von KravaSign/MapleSign und ESign."
+            "value" : "Unterstützt das importieren via KravaSign/MapleSign und ESign."
           }
         },
         "en" : {
@@ -13366,6 +13559,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "支持通过KravaSign/MapleSign和ESign导入。"
+          }
+        }
+      }
+    },
+    "Switch Back" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switch Back"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wróć"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chuyển lại"
           }
         }
       }
@@ -13500,7 +13716,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Herzschlag ist aktiv im Hintergrund, und wird neugestartet wenn die App neu geöffnet oder aufgefordert wird. Wenn der Status unten pulsiert, bedeutet es dann es gesund ist."
+            "value" : "Der Herzschlag wird im Hintergrund aktiviert und startet neu, wenn die App erneut geöffnet oder dazu aufgefordert wird. Wenn der unten stehende Status pulsiert, bedeutet das, dass alles ordnungsgemäß funktioniert."
           }
         },
         "en" : {
@@ -13553,7 +13769,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Es werden nur AltStore-Repositorien unterstützt."
+            "value" : "Die einzigen unterstützten Repositories sind AltStore-Repositories."
           }
         },
         "en" : {
@@ -13600,7 +13816,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Theme"
+            "value" : "Erscheinungsbild"
           }
         },
         "en" : {
@@ -13787,7 +14003,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dies aktiviert „Liquid Glass“ für dieser App, dies erfordert einen Neustart der App um wirksam zu werden."
+            "value" : "Dies aktiviert Liquid Glass für diese App. Damit die Änderung wirksam wird, muss die App neu gestartet werden."
           }
         },
         "en" : {
@@ -13834,7 +14050,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Option erzwingt Apps umzuwandeln um das neue „Liquid Glass“-Redesign zu verwenden welches in iOS 26 eingeführt wurde, dies funktioniert möglicherweise nicht für alle Apps auf Grund von Unterschieden der Frameworks."
+            "value" : "Diese Option erzwingt die Umstellung von Apps auf das neue Liquid-Glass-Redesign, das mit iOS 26 eingeführt wurde. Aufgrund unterschiedlicher Frameworks funktioniert dies möglicherweise nicht bei allen Anwendungen."
           }
         },
         "en" : {
@@ -13881,7 +14097,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dies wird deine importierte Datei nach der Signierung löschen, um an unnötigen Speicher zu sparen."
+            "value" : "Dies wird deine importierte Datei nach der Signierung löschen, um Speicherplatz zu sparen."
           }
         },
         "en" : {
@@ -13922,6 +14138,29 @@
         }
       }
     },
+    "Tinted Icons" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tinted Icons"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barwione Ikony"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biểu tượng màu"
+          }
+        }
+      }
+    },
     "Toggling show sheet will present a share sheet after exporting to your files." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13934,7 +14173,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktivieren von „Zeige Sheet beim Exportieren“ öffnet ein Share Sheet nach dem Exportieren zu deinen Dateien."
+            "value" : "Wenn aktiviert, erscheint nach dem Export in deine Dateien ein Teilen-Dialog."
           }
         },
         "en" : {
@@ -14080,8 +14319,7 @@
             "value" : "Tweaks"
           }
         }
-      },
-      "shouldTranslate" : false
+      }
     },
     "Unknown" : {
       "extractionState" : "manual",
@@ -14172,7 +14410,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lokales Zertifikat aktualisieren"
+            "value" : "Lokale SSL-Zertifikate aktualisieren"
           }
         },
         "en" : {
@@ -14281,8 +14519,7 @@
             "value" : "URL"
           }
         }
-      },
-      "shouldTranslate" : false
+      }
     },
     "Value" : {
       "extractionState" : "manual",
@@ -14486,7 +14723,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeige Entitlements"
+            "value" : "Entitlements anzeigen"
           }
         },
         "en" : {
@@ -14546,7 +14783,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Besuche Patreon"
+            "value" : "Patreon besuchen"
           }
         },
         "en" : {
@@ -14606,7 +14843,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Besuche Webseite"
+            "value" : "Webseite besuchen"
           }
         },
         "en" : {
@@ -14694,7 +14931,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du kannst ‘%@‘ nicht mit sich selbst ändern, bitte benutze ein alternatives Tool um es upzudaten."
+            "value" : "Du kannst ‘%@‘ nicht mit sich selbst aktualisieren. Bitte verwende dafür ein alternatives Tool."
           }
         },
         "en" : {
@@ -14747,7 +14984,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Pairing-Datei ist ungültig und ist inkompatibel mit deinem Gerät, bitte importiere eine gültige."
+            "value" : "Deine Pairing-Datei ist ungültig und nicht mit deinem Gerät kompatibel. Bitte importiere eine gültige Pairing-Datei."
           }
         },
         "en" : {
