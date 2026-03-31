@@ -44,6 +44,13 @@ jobs:
           VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Payload/*.app/Info.plist)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Feather-${{ env.VERSION }}-${{ github.sha }}
+          path: upload/*ipa
+          if-no-files-found: error
+
       - name: Create Release
         if: github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
