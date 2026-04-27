@@ -101,9 +101,7 @@ final class SigningHandler: NSObject {
 		}
 		
 		// iOS "26" (19) needs special treatment
-		if #available(iOS 19, *) {
-			try await _locateMachosAndFixupArm64eSlice(for: movedAppPath)
-		}
+		try await _locateMachosAndFixupArm64eSlice(for: movedAppPath)
 		
 		let handler = ZsignHandler(appUrl: movedAppPath, options: _options, cert: appCertificate)
 		try await handler.disinject()
@@ -307,18 +305,31 @@ extension SigningHandler {
 					didChange = true
 				}
 			}
-			
-			// NSExtension → NSExtensionAttributes → WKAppBundleIdentifier
-			if
-				let extensionDict = infoDict["NSExtension"] as? NSMutableDictionary,
-				let attributes = extensionDict["NSExtensionAttributes"] as? NSMutableDictionary,
-				let oldValue = attributes["WKAppBundleIdentifier"] as? String
-			{
-				let newValue = oldValue.replacingOccurrences(of: oldIdentifier, with: newIdentifier)
-				if oldValue != newValue {
-					attributes["WKAppBundleIdentifier"] = newValue
-					didChange = true
+			if let extensionDict = (infoDict["NSExtension"] as? NSDictionary)?.mutableCopy() as? NSMutableDictionary {
+				// NSExtension → NSExtensionAttributes → WKAppBundleIdentifier
+				if
+					let attributes = extensionDict["NSExtensionAttributes"] as? NSMutableDictionary,
+					let oldValue = attributes["WKAppBundleIdentifier"] as? String
+				{
+					let newValue = oldValue.replacingOccurrences(of: oldIdentifier, with: newIdentifier)
+					if oldValue != newValue {
+						attributes["WKAppBundleIdentifier"] = newValue
+						didChange = true
+					}
 				}
+                
+				// NSExtension → NSExtensionFileProviderDocumentGroup
+				if
+					let oldValue = extensionDict["NSExtensionFileProviderDocumentGroup"] as? String
+				{
+					let newValue = oldValue.replacingOccurrences(of: oldIdentifier, with: newIdentifier)
+					if oldValue != newValue {
+						extensionDict["NSExtensionFileProviderDocumentGroup"] = newValue
+						didChange = true
+					}
+				}
+                
+				infoDict["NSExtension"] = extensionDict
 			}
 			
 			if didChange {
@@ -329,6 +340,7 @@ extension SigningHandler {
 	
 	private func _removePresetFiles(for app: URL) async throws {
 		var files = [
+			"_CodeSignature", // Fallbaccck for some reason the locate doesnt work
 			"embedded.mobileprovision", // Remove this because zsign doesn't replace it
 			"com.apple.WatchPlaceholder", // Useless
 			"SignedByEsign" // Useless
@@ -383,7 +395,6 @@ extension SigningHandler {
 		_enumerateFiles(at: app) { $0.hasSuffix("_CodeSignature") }
 	}
 	
-	@available(iOS 19, *)
 	private func _locateMachosAndFixupArm64eSlice(for app: URL) async throws {
 		let machoFiles = _enumerateFiles(at: app) {
 			$0.hasSuffix(".dylib") || $0.hasSuffix(".framework")
@@ -407,7 +418,7 @@ extension SigningHandler {
 	}
 	
 	private func _enumerateFiles(at base: URL, where predicate: (String) -> Bool) -> [URL] {
-		guard let fileEnum = _fileManager.enumerator(atPath: base.path()) else {
+		guard let fileEnum = _fileManager.enumerator(atPath: base.path) else {
 			return []
 		}
 		

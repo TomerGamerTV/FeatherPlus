@@ -26,7 +26,7 @@ struct LibraryView: View {
 	
 	@State private var _searchText = ""
 	@State private var _selectedScope: Scope = .all
-
+	
 	
 	@Namespace private var _namespace
 	
@@ -34,7 +34,7 @@ struct LibraryView: View {
 	private func filteredAndSortedApps<T>(from apps: FetchedResults<T>) -> [T] where T: NSManagedObject {
 		apps.filter {
 			_searchText.isEmpty ||
-			(($0.value(forKey: "name") as? String)?.localizedCaseInsensitiveContains(_searchText) ?? false)
+				(($0.value(forKey: "name") as? String)?.localizedCaseInsensitiveContains(_searchText) ?? false)
 		}
 	}
 	
@@ -60,52 +60,47 @@ struct LibraryView: View {
 	) private var _importedApps: FetchedResults<Imported>
 	
 	// MARK: Body
-    var body: some View {
+	var body: some View {
 		NBNavigationView(.localized("Library")) {
 			NBListAdaptable {
 				if
-					!_filteredSignedApps.isEmpty ||
-					!_filteredImportedApps.isEmpty
+					!_filteredSignedApps.isEmpty,
+					_selectedScope == .all || _selectedScope == .signed
 				{
-					if
-						_selectedScope == .all ||
-						_selectedScope == .signed
-					{
-						NBSection(
-							.localized("Signed"),
-							secondary: _filteredSignedApps.count.description
-						) {
-							ForEach(_filteredSignedApps, id: \.uuid) { app in
-								LibraryCellView(
-									app: app,
-									selectedInfoAppPresenting: $_selectedInfoAppPresenting,
-									selectedSigningAppPresenting: $_selectedSigningAppPresenting,
-									selectedInstallAppPresenting: $_selectedInstallAppPresenting,
-									selectedAppUUIDs: $_selectedAppUUIDs // send to cell view
-								)
-								.compatMatchedTransitionSource(id: app.uuid ?? "", ns: _namespace)
-							}
+					NBSection(
+						.localized("Signed"),
+						secondary: _filteredSignedApps.count.description
+					) {
+						ForEach(_filteredSignedApps, id: \.uuid) { app in
+							LibraryCellView(
+								app: app,
+								selectedInfoAppPresenting: $_selectedInfoAppPresenting,
+								selectedSigningAppPresenting: $_selectedSigningAppPresenting,
+								selectedInstallAppPresenting: $_selectedInstallAppPresenting,
+								selectedAppUUIDs: $_selectedAppUUIDs
+							)
+							.compatMatchedTransitionSource(id: app.uuid ?? "", ns: _namespace)
 						}
 					}
-					
-					if
-						_selectedScope == .all ||
-							_selectedScope == .imported
-					{
-						NBSection(
-							.localized("Imported"),
-							secondary: _filteredImportedApps.count.description
-						) {
-							ForEach(_filteredImportedApps, id: \.uuid) { app in
-								LibraryCellView(
-									app: app,
-									selectedInfoAppPresenting: $_selectedInfoAppPresenting,
-									selectedSigningAppPresenting: $_selectedSigningAppPresenting,
-									selectedInstallAppPresenting: $_selectedInstallAppPresenting,
-									selectedAppUUIDs: $_selectedAppUUIDs
-								)
-								.compatMatchedTransitionSource(id: app.uuid ?? "", ns: _namespace)
-							}
+				}
+				
+				if
+					!_filteredImportedApps.isEmpty,
+					_selectedScope == .all || _selectedScope == .imported
+				{
+					NBSection(
+						.localized("Imported"),
+						secondary: _filteredImportedApps.count.description
+					) {
+						ForEach(_filteredImportedApps, id: \.uuid) { app in
+							LibraryCellView(
+								app: app,
+								selectedInfoAppPresenting: $_selectedInfoAppPresenting,
+								selectedSigningAppPresenting: $_selectedSigningAppPresenting,
+								selectedInstallAppPresenting: $_selectedInstallAppPresenting,
+								selectedAppUUIDs: $_selectedAppUUIDs
+							)
+							.compatMatchedTransitionSource(id: app.uuid ?? "", ns: _namespace)
 						}
 					}
 				}
@@ -143,7 +138,7 @@ struct LibraryView: View {
 				}
 				
 				if _editMode.isEditing {
-                    NBToolbarButton(
+					NBToolbarButton(
 						.localized("Delete"),
 						systemImage: "trash",
 						isDisabled: _selectedAppUUIDs.isEmpty
@@ -168,7 +163,6 @@ struct LibraryView: View {
 				InstallPreviewView(app: app.base, isSharing: app.archive)
 					.presentationDetents([.height(200)])
 					.presentationDragIndicator(.visible)
-					.compatPresentationRadius(21)
 			}
 			.fullScreenCover(item: $_selectedSigningAppPresenting) { app in
 				SigningView(app: app.base)
@@ -203,17 +197,17 @@ struct LibraryView: View {
 				}
 			}
 			.onReceive(NotificationCenter.default.publisher(for: Notification.Name("Feather.installApp"))) { _ in
-                if let latest = _signedApps.first {
-                    _selectedInstallAppPresenting = AnyApp(base: latest)
-                }
+				if let latest = _signedApps.first {
+					_selectedInstallAppPresenting = AnyApp(base: latest)
+				}
 			}
 			.onChange(of: _editMode) { mode in
 				if mode == .inactive {
 					_selectedAppUUIDs.removeAll()
 				}
 			}
-        }
-    }
+		}
+	}
 }
 
 // MARK: - Extension: View

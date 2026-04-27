@@ -44,8 +44,8 @@ struct SigningView: View {
 	}
 		
 	// MARK: Body
-    var body: some View {
-		NBNavigationView(app.name ?? .localized("Unknown"), displayMode: .inline) {
+	var body: some View {
+		NBNavigationView("", displayMode: .inline) {
 			Form {
 				_customizationOptions(for: app)
 				_cert()
@@ -79,6 +79,12 @@ struct SigningView: View {
 
 			.toolbar {
 				NBToolbarButton(role: .dismiss)
+				ToolbarItem(placement: .principal) {
+					Image("Glyph")
+						.resizable()
+						.scaledToFit()
+						.frame(height: 38)
+				}
 				NBToolbarButton(
 					.localized("Reset"),
 					style: .text,
@@ -138,7 +144,7 @@ struct SigningView: View {
 				_temporaryOptions.appName = newName
 			}
 		}
-    }
+	}
 }
 
 // MARK: - Extension: View
@@ -220,11 +226,11 @@ extension SigningView {
 					)
 				}
 				#if NIGHTLY || DEBUG
-				NavigationLink(.localized("Entitlements") + " (BETA)") {
-					SigningEntitlementsView(
-						bindingValue: $_temporaryOptions.appEntitlementsFile
-					)
-				}
+					NavigationLink(.localized("Entitlements") + " (BETA)") {
+						SigningEntitlementsView(
+							bindingValue: $_temporaryOptions.appEntitlementsFile
+						)
+					}
 				#endif
 				NavigationLink(.localized("Tweaks")) {
 					SigningTweaksView(

@@ -6,69 +6,30 @@
 //
 
 import CoreData
-import Foundation // Add this for FileManager and URL
+import Foundation
 
-// MARK: - Class
+// MARK: - Storage
 final class Storage: ObservableObject {
 	static let shared = Storage()
 	let container: NSPersistentContainer
 	
 	private let _name: String = "Feather"
-	
+
 	init(inMemory: Bool = false) {
 		container = NSPersistentContainer(name: _name)
-		
-		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-		let docsStoreURL = documentsDirectory.appendingPathComponent("Feather.sqlite")
-		
-		let libraryDirectory = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0].appendingPathComponent("Application Support")
-		let libraryStoreURL = libraryDirectory.appendingPathComponent("Feather.sqlite")
-		
+
 		if inMemory {
-			container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+			container.persistentStoreDescriptions.first?.url =
+				URL(fileURLWithPath: "/dev/null")
 		} else {
-			var storeURL = docsStoreURL
-			if !FileManager.default.fileExists(atPath: docsStoreURL.path) && FileManager.default.fileExists(atPath: libraryStoreURL.path) {
-				do {
-					try FileManager.default.copyItem(at: libraryStoreURL, to: docsStoreURL)
-					
-					let walURL = libraryStoreURL.appendingPathExtension("sqlite-wal")
-					let docsWalURL = docsStoreURL.appendingPathExtension("sqlite-wal")
-					if FileManager.default.fileExists(atPath: walURL.path) {
-						try FileManager.default.copyItem(at: walURL, to: docsWalURL)
-					}
-					
-					let shmURL = libraryStoreURL.appendingPathExtension("sqlite-shm")
-					let docsShmURL = docsStoreURL.appendingPathExtension("sqlite-shm")
-					if FileManager.default.fileExists(atPath: shmURL.path) {
-						try FileManager.default.copyItem(at: shmURL, to: docsShmURL)
-					}
-					
-					// Clean up old files
-					try FileManager.default.removeItem(at: libraryStoreURL)
-					if FileManager.default.fileExists(atPath: walURL.path) {
-						try FileManager.default.removeItem(at: walURL)
-					}
-					if FileManager.default.fileExists(atPath: shmURL.path) {
-						try FileManager.default.removeItem(at: shmURL)
-					}
-				} catch {
-					print("Failed to migrate database: \(error)")
-					storeURL = libraryStoreURL
-				}
-			}
-			container.persistentStoreDescriptions.first!.url = storeURL
+			container.persistentStoreDescriptions.first?.url = _migratedStoreURL()
 		}
-		
-		container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-			if let error = error as NSError? {
-				fatalError("Unresolved error \(error), \(error.userInfo)")
-			}
-		})
-		
+
+		_loadPersistentStoreAggressively()
 		container.viewContext.automaticallyMergesChangesFromParent = true
+		container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
 	}
-	
+
 	var context: NSManagedObjectContext {
 		container.viewContext
 	}
@@ -89,5 +50,95 @@ final class Storage: ObservableObject {
 	func countContent<T: NSManagedObject>(for type: T.Type) -> String {
 		let request = T.fetchRequest()
 		return "\((try? context.count(for: request)) ?? 0)"
+	}
+
+	private func _loadPersistentStoreAggressively() {
+		container.loadPersistentStores { description, error in
+			if error != nil {
+				self._destroyStore(at: description.url)
+				self.container.loadPersistentStores { _, error in
+					if let error {
+						fatalError("Core Data unrecoverable: \(error)")
+					}
+				}
+			}
+		}
+	}
+
+	private func _destroyStore(at url: URL?) {
+		guard let url else { return }
+
+		let base = url.deletingPathExtension()
+		let fm = FileManager.default
+
+		let files = [
+			base.appendingPathExtension("sqlite"),
+			base.appendingPathExtension("sqlite-wal"),
+			base.appendingPathExtension("sqlite-shm")
+		]
+
+		for file in files {
+			try? fm.removeItem(at: file)
+		}
+
+		try? FileManager.default.removeFileIfNeeded(at: FileManager.default.signed)
+		try? FileManager.default.removeFileIfNeeded(at: FileManager.default.unsigned)
+		try? FileManager.default.removeFileIfNeeded(at: FileManager.default.certificates)
+		UserDefaults.standard.set(0, forKey: "feather.selectedCert")
+	}
+
+	private func _migratedStoreURL() -> URL {
+		let fm = FileManager.default
+		let documentsURL = fm.urls(for: .documentDirectory, in: .userDomainMask)[0]
+			.appendingPathComponent("Feather.sqlite")
+		let libraryURL = fm.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+			.appendingPathComponent("Application Support")
+			.appendingPathComponent("Feather.sqlite")
+
+		guard !fm.fileExists(atPath: documentsURL.path),
+			  fm.fileExists(atPath: libraryURL.path) else {
+			return documentsURL
+		}
+
+		do {
+			try fm.copyItem(at: libraryURL, to: documentsURL)
+			try _copyStoreSidecars(from: libraryURL, to: documentsURL)
+			try _removeStoreFiles(at: libraryURL)
+		} catch {
+			print("Failed to migrate database: \(error)")
+			return libraryURL
+		}
+
+		return documentsURL
+	}
+
+	private func _copyStoreSidecars(from source: URL, to destination: URL) throws {
+		let fm = FileManager.default
+		let sourceSidecars = _sidecarURLs(for: source)
+		let destinationSidecars = _sidecarURLs(for: destination)
+
+		for (source, destination) in zip(sourceSidecars, destinationSidecars) {
+			if fm.fileExists(atPath: source.path) {
+				try fm.copyItem(at: source, to: destination)
+			}
+		}
+	}
+
+	private func _removeStoreFiles(at url: URL) throws {
+		let fm = FileManager.default
+
+		for file in [url] + _sidecarURLs(for: url) {
+			if fm.fileExists(atPath: file.path) {
+				try fm.removeItem(at: file)
+			}
+		}
+	}
+
+	private func _sidecarURLs(for url: URL) -> [URL] {
+		let base = url.deletingPathExtension()
+		return [
+			base.appendingPathExtension("sqlite-wal"),
+			base.appendingPathExtension("sqlite-shm")
+		]
 	}
 }

@@ -1,13 +1,13 @@
 NAME := Feather
-PLATFORM := iphoneos
-SCHEMES := Feather
+SCHEME := Feather
+PLATFORMS := iphoneos maccatalyst
+
 TMP := $(TMPDIR)/$(NAME)
-STAGE := $(TMP)/stage
-APP := $(TMP)/Build/Products/Release-$(PLATFORM)
+CERT_JSON_URL := https://backloop.dev/pack.json
 
-.PHONY: all clean $(SCHEMES)
+.PHONY: all clean deps $(PLATFORMS)
 
-all: $(SCHEMES)
+all: $(PLATFORMS)
 
 clean:
 	rm -rf $(TMP)
@@ -17,38 +17,41 @@ clean:
 deps:
 	rm -rf deps || true
 	mkdir -p deps
-	curl -L -o deps/server.crt https://backloop.dev/backloop.dev-cert.crt || true
-	curl -L -o deps/server.key1 https://backloop.dev/backloop.dev-key.part1.pem || true
-	curl -L -o deps/server.key2 https://backloop.dev/backloop.dev-key.part2.pem || true
-	cat deps/server.key1 deps/server.key2 > deps/server.pem 2>/dev/null || true
-	rm -f deps/server.key1 deps/server.key2
-	echo "*.backloop.dev" > deps/commonName.txt
 
-$(SCHEMES): deps
+	curl -fsSL "$(CERT_JSON_URL)" -o cert.json
+	jq -r '.cert' cert.json > deps/server.crt
+	jq -r '.key1, .key2' cert.json > deps/server.pem
+	jq -r '.info.domains.commonName' cert.json > deps/commonName.txt
+
+
+$(PLATFORMS): deps
+	rm -rf _build
+
+	@if [ "$@" = "iphoneos" ]; then \
+		DEST="generic/platform=iOS"; \
+	else \
+		DEST="generic/platform=macOS,variant=Mac Catalyst"; \
+	fi; \
 	xcodebuild \
-	    -project Feather.xcodeproj \
-	    -scheme "$@" \
-	    -configuration Release \
-	    -arch arm64 \
-	    -sdk $(PLATFORM) \
-	    -derivedDataPath $(TMP) \
-	    -skipPackagePluginValidation \
-	    CODE_SIGNING_ALLOWED=NO \
-	    ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO
+		-project Feather.xcodeproj \
+		-scheme $(SCHEME) \
+		-configuration Release \
+		-destination "$$DEST" \
+		-derivedDataPath $(TMP)/$@ \
+		-skipPackagePluginValidation \
+		CODE_SIGNING_ALLOWED=NO \
+		ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO
 
-	rm -rf Payload
-	rm -rf $(STAGE)/
-	mkdir -p $(STAGE)/Payload
+	mkdir -p _build/Payload
+	cp -R _build/Applications/*.app _build/Payload/Feather.app
+	chmod -R 0755 _build/Payload/Feather.app
+	codesign --force --sign - --timestamp=none _build/Payload/Feather.app
+	cp deps/* _build/Payload/Feather.app/ || true
 
-	mv "$(APP)/$@.app" "$(STAGE)/Payload/$@.app"
-
-	chmod -R 0755 "$(STAGE)/Payload/$@.app"
-	codesign --force --sign - --timestamp=none "$(STAGE)/Payload/$@.app"
-
-	cp deps/* "$(STAGE)/Payload/$@.app/" || true
-
-	rm -rf "$(STAGE)/Payload/$@.app/_CodeSignature"
-	ln -sf "$(STAGE)/Payload" Payload
-	
 	mkdir -p packages
-	zip -r9 "packages/$@.ipa" Payload
+
+	@if [ "$@" = "iphoneos" ]; then \
+		ditto -c -k --sequesterRsrc --keepParent _build/Payload "packages/Feather.ipa"; \
+	else \
+		ditto -c -k --sequesterRsrc --keepParent _build/Payload/Feather.app "packages/Feather_Catalyst.zip"; \
+	fi

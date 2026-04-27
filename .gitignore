@@ -4,3 +4,5 @@ Payload
 *UserInterfaceState.xcuserstate
 xcuserdata/
 deps
+cert.json
+_build

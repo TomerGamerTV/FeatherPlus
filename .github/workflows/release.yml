@@ -1,20 +1,23 @@
-name: Create New Release
+name: Release
 
 on:
+  push:
+    tags:
+      - v*
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           submodules: 'true'
-      
-      - name: Use Xcode 16.4
+
+      - name: Select Xcode
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_26.3.0.app
 
       - name: Compile Feather
         run: | 
@@ -23,10 +26,10 @@ jobs:
           mkdir upload
           mv packages/* upload/
 
-      - name: Get Version
+      - name: Extract Version
         id: get_version
         run: |
-          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Payload/*.app/Info.plist)
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" _build/Payload/*.app/Info.plist)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
       - name: Create Release
@@ -35,7 +38,7 @@ jobs:
           name: Feather v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
           files: |
-            upload/*ipa
+            upload/*
           generate_release_notes: true
           fail_on_unmatched_files: true
           draft: true

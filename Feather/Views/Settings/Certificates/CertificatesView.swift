@@ -13,7 +13,10 @@ struct CertificatesView: View {
 	@AppStorage("feather.selectedCert") private var _storedSelectedCert: Int = 0
 	
 	@State private var _isAddingPresenting = false
+	@State private var _isRenamingPresenting = false
 	@State private var _isSelectedInfoPresenting: CertificatePair?
+	@State private var _certToRename: CertificatePair?
+	@State private var _newNickname: String = ""
 
 	// MARK: Fetch
 	@FetchRequest(
@@ -75,6 +78,14 @@ struct CertificatesView: View {
 			CertificatesAddView()
 				.presentationDetents([.medium])
 		}
+		.alert(.localized("Change Nickname"), isPresented: $_isRenamingPresenting, presenting: _certToRename) { cert in
+			TextField(.localized("Nickname"), text: $_newNickname)
+			Button(.localized("Cancel"), role: .cancel) { }
+			Button(.localized("OK")) {
+				cert.nickname = _newNickname.isEmpty ? nil : _newNickname
+				Storage.shared.saveContext()
+			}
+		}
 	}
 }
 
@@ -82,6 +93,14 @@ struct CertificatesView: View {
 extension CertificatesView {
 	@ViewBuilder
 	private func _cellButton(for cert: CertificatePair, at index: Int) -> some View {
+		let cornerRadius = {
+			if #available(iOS 26.0, *) {
+				28.0
+			} else {
+				10.5
+			}
+		}()
+		
 		Button {
 			_selectedCertBinding.wrappedValue = index
 		} label: {
@@ -90,11 +109,11 @@ extension CertificatesView {
 			)
 			.padding()
 			.background(
-				RoundedRectangle(cornerRadius: 10.5)
+				RoundedRectangle(cornerRadius: cornerRadius)
 					.fill(Color(uiColor: .quaternarySystemFill))
 			)
 			.overlay(
-				RoundedRectangle(cornerRadius: 10.5)
+				RoundedRectangle(cornerRadius: cornerRadius)
 					.strokeBorder(
 						_selectedCertBinding.wrappedValue == index ? Color.accentColor : Color.clear,
 						lineWidth: 2
@@ -102,8 +121,10 @@ extension CertificatesView {
 			)
 			.contextMenu {
 				_contextActions(for: cert)
-				Divider()
-				_actions(for: cert)
+				if cert.isDefault != true {
+					Divider()
+					_actions(for: cert)
+				}
 			}
 			.transaction {
 				$0.animation = nil
@@ -123,6 +144,11 @@ extension CertificatesView {
 	private func _contextActions(for cert: CertificatePair) -> some View {
 		Button(.localized("Get Info"), systemImage: "info.circle") {
 			_isSelectedInfoPresenting = cert
+		}
+		Button(.localized("Change Nickname"), systemImage: "pencil") {
+			_newNickname = cert.nickname ?? ""
+			_certToRename = cert
+			_isRenamingPresenting = true
 		}
 		Divider()
 		Button(.localized("Check Revokage"), systemImage: "person.text.rectangle") {
