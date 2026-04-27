@@ -43,7 +43,15 @@ jobs:
       - name: Extract Version
         id: get_version
         run: |
-          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" _build/Payload/*.app/Info.plist)
+          VERSION=""
+          APP_PLIST=$(find _build/Payload -maxdepth 2 -name Info.plist | head -n 1)
+          if [ -n "$APP_PLIST" ]; then
+            VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$APP_PLIST" 2>/dev/null || true)
+          fi
+          if [ -z "$VERSION" ]; then
+            VERSION=$(sed -n 's/^FEATHER_PROJECT_VERSION=//p' Feather.xcconfig | head -n 1)
+          fi
+          test -n "$VERSION"
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
       - name: Upload Build Artifact
