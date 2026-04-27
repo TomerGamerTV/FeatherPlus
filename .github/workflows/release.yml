@@ -11,16 +11,30 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        env:
+          GIT_LFS_SKIP_SMUDGE: 1
         with:
           submodules: 'true'
+          lfs: false
+          persist-credentials: false
+
+      - name: Fetch LFS Objects
+        run: |
+          git lfs install --local
+          git lfs pull
+          git submodule foreach --recursive '
+            git config --local --unset-all http.https://github.com/.extraheader || true
+            git lfs install --local
+            git lfs pull
+          '
 
       - name: Select Xcode
         run: |
           sudo xcode-select -s /Applications/Xcode_26.3.0.app
 
       - name: Compile Feather
-        run: | 
+        run: |
           agvtool new-version -all $(git rev-parse HEAD)
           make
           mkdir upload
@@ -32,7 +46,15 @@ jobs:
           VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" _build/Payload/*.app/Info.plist)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Feather-${{ env.VERSION }}-${{ github.sha }}
+          path: upload/*ipa
+          if-no-files-found: error
+
       - name: Create Release
+        if: github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v2
         with:
           name: Feather v${{ env.VERSION }}
@@ -43,4 +65,4 @@ jobs:
           fail_on_unmatched_files: true
           draft: true
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
