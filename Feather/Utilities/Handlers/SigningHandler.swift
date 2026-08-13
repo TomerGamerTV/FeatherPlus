@@ -156,6 +156,7 @@ final class SigningHandler: NSObject {
 			
 			Storage.shared.addSigned(
 				uuid: _uuid,
+				source: _app.source,
 				certificate: _options.signingOption != .default ? nil : appCertificate,
 				appName: bundle?.name,
 				appIdentifier: bundle?.bundleIdentifier,
@@ -166,6 +167,12 @@ final class SigningHandler: NSObject {
 				continuation.resume()
 			}
 		}
+		
+		Storage.shared.copySourceMetadata(
+			from: _app.uuid,
+			to: _uuid,
+			kind: .signed
+		)
 	}
 	
 	private func _directory() async throws -> URL {
@@ -193,6 +200,9 @@ extension SigningHandler {
 		if options.minimumAppRequirement != .default {
 			infoDictionary.setObject(options.minimumAppRequirement.rawValue, forKey: "MinimumOSVersion" as NSCopying)
 		}
+		
+		if options.experiment_disableLiquidGlass { infoDictionary.setObject(true, forKey: "UIDesignRequiresCompatibility" as NSCopying) }
+		if options.experiment_supportLiquidGlass { infoDictionary.setObject(false, forKey: "UIDesignRequiresCompatibility" as NSCopying) }
 		
 		// useless crap
 		if infoDictionary["UISupportedDevices"] != nil {

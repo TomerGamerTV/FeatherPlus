@@ -24,6 +24,9 @@ final class Storage: ObservableObject {
 		} else {
 			container.persistentStoreDescriptions.first?.url = _migratedStoreURL()
 		}
+		
+		container.persistentStoreDescriptions.first?.shouldMigrateStoreAutomatically = true
+		container.persistentStoreDescriptions.first?.shouldInferMappingModelAutomatically = true
 
 		_loadPersistentStoreAggressively()
 		container.viewContext.automaticallyMergesChangesFromParent = true
